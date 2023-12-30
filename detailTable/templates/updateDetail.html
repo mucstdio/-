@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <table border="2" width="100%" weight="100%">
+    <thead>
+    <tr>
+        <th>所属校区</th>
+        <th>建筑名称</th>
+        <th>房间号</th>
+        <th>房间名称</th>
+        <th>建筑面积</th>
+        <th>使用面积</th>
+        <th>房屋用途</th>
+        <th>房屋分类</th>
+        <th>使用人编号</th>
+        <th>使用人</th>
+        <th>房屋状态</th>
+        <th>备注</th>
+        <th>部门</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ update_dict['campus']}}</td>
+            <td>{{ update_dict['buildname']}}</td>
+            <td>{{ update_dict['roomid']}}</td>
+            <td>{{ update_dict['roomname']}}</td>
+            <td>{{ update_dict['areaBuild']}}</td>
+            <td>{{ update_dict['areaUse']}}</td>
+            <td>{{ update_dict['purpose']}}</td>
+            <td>{{ update_dict['classify']}}</td>
+            <td>{{ update_dict['userid']}}</td>
+            <td>{{ update_dict['username']}}</td>
+            <td>{{ update_dict['roomstate']}}</td>
+            <td>{{ update_dict['notes']}}</td>
+            <td>{{ update_dict['department']}}</td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>填入需要更新的数据，若不填则保持不变</h4>
+    <!--通过改变form标签中method属性来改变数据请求的方式-->
+<!--    <form action="http://localhost:8080/update" method="POST">-->
+<!--        建筑名称:<input type="text" name="buildname"><br/><br/>-->
+<!--&lt;!&ndash;        房间号:<input type="text" name="roomid" oninput="value=value.replace(/[^\d]/g,'')"><br/><br/>&ndash;&gt;-->
+<!--&lt;!&ndash;        所属校区:<input type="text" name="campus"><br/><br/>&ndash;&gt;-->
+<!--        房间号:<input type="text" name="roomid"><br/><br/>-->
+<!--        房间名称:<input type="text" name="roomname"><br/><br/>-->
+<!--        建筑面积:<input type="text" name="areaBuild"><br/><br/>-->
+<!--        使用面积:<input type="text" name="areaUse"><br/><br/>-->
+<!--        房屋用途:<input type="text" name="purpose"><br/><br/>-->
+<!--        房屋分类:<select name="classify">-->
+<!--                    <option></option>-->
+<!--                    <option>行政办公</option>-->
+<!--                    <option>教师用房</option>-->
+<!--                    <option>研究生用房</option>-->
+<!--                    <option>本科实验室</option>-->
+<!--                    <option>科研实验室</option>-->
+<!--                    <option>公共设施</option>-->
+<!--                    <option>专用教室</option>-->
+<!--                </select><br/><br/>-->
+<!--        使用人编号:<input type="text" name="userid"><br/><br/>-->
+<!--        使用人:<input type="text" name="username"><br/><br/>-->
+<!--        房屋状态:<input type="text" name="roomstate"><br/><br/>-->
+<!--        备注:<input type="text" name="notes"><br/><br/>-->
+<!--        院系:<input type="text" name="department"><br/><br/>-->
+<!--        <input type="submit" value="提交"/>-->
+<!--    </form>-->
+    <form action="http://localhost:8080/update" method="POST">
+        所属校区:<input type="text" name="campus" autocomplete="off"><br/><br/>
+        建筑名称:<input type="text" name="buildname" autocomplete="off"><br/><br/>
+        房间号:<input type="text" name="roomid" autocomplete="off"><br/><br/>
+        房间名称:<input type="text" name="roomname" autocomplete="off"><br/><br/>
+        建筑面积:<input type="text" name="areaBuild" autocomplete="off"><br/><br/>
+        使用面积:<input type="text" name="areaUse" autocomplete="off"><br/><br/>
+
+    <label for="purpose">房屋用途</label>
+    <select name="purpose" id="purpose">
+        <option value="" selected disabled>请选择房屋用途</option>
+
+        <optgroup label="教学及辅助用房">
+        	<optgroup label=" 教室">
+	            <option value="010101">普通教室</option>
+	            <option value="010102">制图教室</option>
+	            <option value="010103">艺术教室</option>
+	            <option value="010104">其他</option>
+	        </optgroup>
+			<optgroup label=" 实验实习用房">
+				<option value="010201">教学实验用房</option>
+				<option value="010202">实习实训用房</option>
+				<option value="010203">自选科研项目用房</option>
+				<option value="010204">学生科技创新用房</option>
+				<option value="010205">研究生实验研究补助用房</option>
+				<option value="010206">其他</option>
+			</optgroup>
+			<optgroup label=" 专职科研机构办公及研究用房">
+				<option value="010301">实验室</option>
+				<option value="010302">研究室</option>
+				<option value="010303">资料室</option>
+				<option value="010304">咨询室</option>
+				<option value="010305">办公室</option>
+				<option value="010306">会议室</option>
+				<option value="010307">值班室</option>
+				<option value="010308">其他</option>
+			</optgroup>
+			<optgroup label=" 图书馆">
+				<option value="010401">阅览室</option>
+				<option value="010402">书库</option>
+				<option value="010403">检索厅</option>
+				<option value="010404">出纳厅</option>
+				<option value="010405">报告厅</option>
+				<option value="010406">内部业务用房</option>
+				<option value="010407">技术设备用房</option>
+				<option value="010408">办公室及附属用房</option>
+				<option value="010409">信息网络用房</option>
+				<option value="010410">其他</option>
+			</optgroup>
+
+			<optgroup label=" 室内体育用房">
+				<option value="010501">风雨操场</option>
+				<option value="010502">体育馆</option>
+				<option value="010503">游泳馆</option>
+				<option value="010504">健身房</option>
+				<option value="010505">乒乓球(羽毛球)房</option>
+				<option value="010506">体操房</option>
+				<option value="010507">体质测试用房</option>
+				<option value="010508">器械库</option>
+				<option value="010509">淋浴</option>
+				<option value="010510">更衣室</option>
+				<option value="010511">卫生间</option>
+				<option value="010512">其他</option>
+			</optgroup>
+			<optgroup label=" 师生活动用房">
+				<option value="010601">教职工活动用房</option>
+				<option value="010602">社团活动用房</option>
+				<option value="010603">心理咨询室</option>
+				<option value="010604">帮困助学用房</option>
+				<option value="010605">勤工俭学用房</option>
+				<option value="010606">就业指导用房</option>
+				<option value="010607">文娱活动</option>
+				<option value="010608">管理办公用房</option>
+				<option value="010609">其他</option>
+			</optgroup>
+			<optgroup label=" 会堂">
+				<option value="0107">会堂</option>
+			</optgroup>
+			<optgroup label=" 继续教育用房">
+				<option value="010801">办公室</option>
+				<option value="010802">学籍档案室</option>
+				<option value="010803">资料室</option>
+				<option value="010804">会议室</option>
+				<option value="010805">其他</option>
+			</optgroup>
+        </optgroup>
+
+
+		<optgroup label="行政办公用房">
+		    <optgroup label=" 校级办公用房">
+			    <option value="020101">校级党政办公室</option>
+			    <option value="020102">会议室</option>
+			    <option value="020103">校史室</option>
+			    <option value="020104">档案室</option>
+			    <option value="020105">文印室</option>
+			    <option value="020106">广播室</option>
+			    <option value="020107">接待室</option>
+			    <option value="020108">财务管理用房</option>
+			    <option value="020109">其他</option>
+			</optgroup>
+
+
+			<optgroup label=" 系及教师教研办公用房">
+			    <option value="020201">党政（团）办公室</option>
+			    <option value="020202">教师办公室</option>
+			    <option value="020203">教研室</option>
+			    <option value="020204">学籍档案室</option>
+			    <option value="020205">资料室</option>
+			    <option value="020206">会议室</option>
+			    <option value="020207">接待室</option>
+			    <option value="020208">其他</option>
+			</optgroup>
+		</optgroup>
+
+		<optgroup label="生活用房">
+			<optgroup label=" 学生宿舍（公寓）">
+
+				<option value="030101">居室</option>
+				<option value="030102">盥洗室</option>
+				<option value="030103">厕所</option>
+				<option value="030104">活动室</option>
+				<option value="030105">辅导员及管理人员用房</option>
+				<option value="030106">其他</option>
+			</optgroup>
+
+			<optgroup label=" 食堂">
+				<option value="030201">餐厅</option>
+				<option value="030202">厨房及附属用房</option>
+				<option value="030203">办公室</option>
+				<option value="030204">其他</option>
+			</optgroup>
+
+			<optgroup label=" 单身教师宿舍（公寓）">
+				<option value="030301">居室</option>
+				<option value="030302">盥洗室</option>
+				<option value="030303">厕所</option>
+				<option value="030304">管理人员用房</option>
+				<option value="030305">其他</option>
+			</optgroup>
+
+			<optgroup label=" 后勤及辅助用房">
+				<option value="030401">医务室(所、院)</option>
+				<option value="030402">公共浴室</option>
+				<option value="030403">食堂工人集体宿舍</option>
+				<option value="030404">汽车库(公车)</option>
+				<option value="030405">服务用房(小型超市、洗衣房等)</option>
+				<option value="030406">综合修理用房</option>
+				<option value="030407">总务仓库</option>
+				<option value="030408">锅炉房</option>
+				<option value="030409">水泵房</option>
+				<option value="030410">变电所(配电房)</option>
+				<option value="030411">消防用房</option>
+				<option value="030412">环卫绿化用房</option>
+				<option value="030413">室外厕所</option>
+				<option value="030414">传达警卫室</option>
+				<option value="030415">其他</option>
+			</optgroup>
+		</optgroup>
+
+		<optgroup label="教工住宅">
+		    <option value="0401">已出售教工住宅</option>
+		    <option value="0402">其他教工住宅用房</option>
+		</optgroup>
+
+		<optgroup label="其他用房">
+		    <option value="0501">人防工程</option>
+		    <option value="0502">地下停车库</option>
+		    <option value="0503">商业用房</option>
+		    <option value="0504">产业用房</option>
+		    <option value="0505">对外招生的附中、附小、幼儿园</option>
+		    <option value="0506">对外开放的医院</option>
+		    <option value="0507">交流中心</option>
+		    <option value="0508">接待中心</option>
+		    <option value="0509">师范院校的培训中心</option>
+		    <option value="0510">博物馆</option>
+		    <option value="0511">被外单位租（借）</option>
+		    <option value="0512">其他</option>
+		</optgroup>
+
+		</select>
+		<br/><br/>
+
+	    <!-- Room Type Dropdown -->
+	    <label for="classify">房屋分类</label>
+	    <select name="classify" id="classify">
+	        <option value="" selected disabled>请选择房间类型</option>
+	        <option value="行政办公">行政办公</option>
+	        <option value="教师用房">教师用房</option>
+	        <option value="研究生用房">研究生用房</option>
+	        <option value="本科实验室">本科实验室</option>
+	        <option value="学科实验室">学科实验室</option>
+	        <option value="专用教室">专用教室</option>
+	        <option value="公共设施">公共设施</option>
+	        <option value="其他">其他</option>
+	    </select>
+	    <br/><br/>
+
+        使用人编号:<input type="text" name="userid" autocomplete="off"><br/><br/>
+        使用人:<input type="text" name="username" autocomplete="off"><br/><br/>
+
+
+	    <label for="roomstate">房屋状态</label>
+	    <select name="roomstate" id="roomstate">
+	        <option value="" selected disabled>请选择房屋状态</option>
+	        <option value="正常">正常</option>
+	        <option value="不正常">不正常</option>
+	    </select>
+	    <br/><br/>
+
+        备注:<input type="text" name="notes" autocomplete="off"><br/><br/>
+
+	    <label for="department">部门</label>
+	    <select name="department" id="department">
+	        <option value="" selected disabled>请选择学院</option>
+	        <option value="航海学院">航海学院</option>
+	        <option value="轮机工程学院">轮机工程学院</option>
+	        <option value="船舶电气工程学院">船舶电气工程学院</option>
+	        <option value="信息科学技术学院">信息科学技术学院</option>
+	        <option value="交通运输工程学院">交通运输工程学院</option>
+	        <option value="航运经济与管理学院">航运经济与管理学院</option>
+	        <option value="船舶与海洋工程学院">船舶与海洋工程学院</option>
+	        <option value="环境科学与工程学院">环境科学与工程学院</option>
+	        <option value="法学院">法学院</option>
+	        <option value="外国语学院">外国语学院</option>
+	        <option value="公共管理与人文艺术学院">公共管理与人文艺术学院</option>
+	        <option value="马克思主义学院">马克思主义学院</option>
+	        <option value="理学院">理学院</option>
+			<option value="体育工作部">体育工作部</option>
+			<option value="创新创业学院">创新创业学院</option>
+			<option value="继续教育学院">继续教育学院</option>
+			<option value="专业学位教育学院">专业学位教育学院</option>
+			<option value="航海训练与工程实践中心">航海训练与工程实践中心</option>
+			<option value="航运发展研究院">航运发展研究院</option>
+			<option value="留学生教育中心">留学生教育中心</option>
+			<option value="国际联合学院">国际联合学院</option>
+			<option value="人工智能学院">人工智能学院</option>
+			<option value="办公室(保密办公室挂靠)">办公室(保密办公室挂靠)</option>
+			<option value="纪委办公室(监察审计处)">纪委办公室(监察审计处)</option>
+			<option value="组织部">组织部</option>
+			<option value="宣传部(统战部)">宣传部(统战部)</option>
+			<option value="学生工作部(武装部)">学生工作部(武装部)</option>
+			<option value="政策研究室">政策研究室</option>
+			<option value="人事处">人事处</option>
+			<option value="教务处">教务处</option>
+			<option value="科技处">科技处</option>
+			<option value="研究生院">研究生院</option>
+			<option value="发展规划与质量管理处">发展规划与质量管理处</option>
+			<option value="学生就业指导中心">学生就业指导中心</option>
+			<option value="国际合作与交流处(港澳台事务办公室)">国际合作与交流处(港澳台事务办公室)</option>
+			<option value="国有资产与实验室管理处">国有资产与实验室管理处</option>
+			<option value="财务处">财务处</option>
+			<option value="后勤保障处">后勤保障处</option>
+			<option value="离退休工作处">离退休工作处</option>
+			<option value="校友事务与合作处">校友事务与合作处</option>
+			<option value="保卫处">保卫处</option>
+			<option value="工会">工会</option>
+			<option value="团委">团委</option>`
+	    </select>
+	    <br/><br/>
+
+        <input type="submit" value="提交"/>
+    </form>
+    <p><a href="/queryDetail"><button>返回</button></a></p>
+</div>
+</body>
+</html>

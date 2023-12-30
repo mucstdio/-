@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h3>更改成功，结果为：</h3>
+  <table border="2" width="100%" weight="100%">
+    <thead>
+    <tr>
+        <th>campus</th>
+        <th>buildname</th>
+        <th>roomid</th>
+        <th>roomname</th>
+        <th>areaBuild</th>
+        <th>areaUse</th>
+        <th>purpose</th>
+        <th>classify</th>
+        <th>userid</th>
+        <th>username</th>
+        <th>roomstate</th>
+        <th>notes</th>
+        <th>department</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ update_dict['campus']}}</td>
+            <td>{{ update_dict['buildname']}}</td>
+            <td>{{ update_dict['roomid']}}</td>
+            <td>{{ update_dict['roomname']}}</td>
+            <td>{{ update_dict['areaBuild']}}</td>
+            <td>{{ update_dict['areaUse']}}</td>
+            <td>{{ update_dict['purpose']}}</td>
+            <td>{{ update_dict['classify']}}</td>
+            <td>{{ update_dict['userid']}}</td>
+            <td>{{ update_dict['username']}}</td>
+            <td>{{ update_dict['roomstate']}}</td>
+            <td>{{ update_dict['notes']}}</td>
+            <td>{{ update_dict['department']}}</td>
+        </tr>
+    </tbody>
+  </table>
+  <p><a href="/queryDetail"><button>返回</button></a></p>
+</body>
+</html>

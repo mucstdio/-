@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>建筑信息表</title>
+</head>
+<body>
+<p><a href="/index"><button>返回首页</button></a></p>
+<p><a href="/insertBI"><button>插入</button></a></p>
+
+  <table border="2" width="100%" weight="100%">
+    <thead>
+    <tr>
+        <th>校区名称</th>
+        <th>建筑编号</th>
+        <th>建筑名称</th>
+        <th>原值(元)</th>
+        <th>坐落</th>
+        <th>取得日期</th>
+        <th>建成年份</th>
+        <th>占地面积</th>
+        <th>建筑面积</th>
+        <th>使用面积</th>
+        <th>地上建筑面积</th>
+        <th>地下建筑面积</th>
+        <th>地上层数</th>
+        <th>地下层数</th>
+        <th>建筑物高度(米)</th>
+        <th>建筑物用途</th>
+        <th>产权形式</th>
+        <th>权属证明</th>
+        <th>建筑物结构</th>
+        <th>权属性质</th>
+        <th>产权证号</th>
+        <th>取得方式</th>
+        <th>使用面积系数(K)</th>
+        <th>功能类别</th>
+        <th>学校产权中被外单位租（借）用面积</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for result in merge_list %}
+            <tr>
+                <td>{{ result['campus']}}</td>
+                <td>{{ result['buildid']}}</td>
+                <td>{{ result['buildname']}}</td>
+                <td>{{ result['buildvalue']}}</td>
+                <td>{{ result['locate']}}</td>
+                <td>{{ result['acquisitiondata']}}</td>
+                <td>{{ result['yearbuilt']}}</td>
+                <td>{{ result['areacover']}}</td>
+                <td>{{ result['areabuild']}}</td>
+                <td>{{ result['areause']}}</td>
+                <td>{{ result['areabuildabove']}}</td>
+                <td>{{ result['areabuildunder']}}</td>
+                <td>{{ result['floorabove']}}</td>
+                <td>{{ result['floorunder']}}</td>
+                <td>{{ result['height']}}</td>
+                <td>{{ result['purpose']}}</td>
+                <td>{{ result['propertyform']}}</td>
+                <td>{{ result['ownershipcertificate']}}</td>
+                <td>{{ result['buildstructure']}}</td>
+                <td>{{ result['ownershipnature']}}</td>
+                <td>{{ result['propertyid']}}</td>
+                <td>{{ result['acquisitionmethod']}}</td>
+                <td>{{ result['usecoefficient']}}</td>
+                <td>{{ result['funccategory'] }}</td>
+                <td>{{ result['arealeased'] }}</td>
+                <td><a href="/updateBI?buildid={{ result['buildid'] }}&&funccategory={{ result['funccategory'] }}&&arealeased={{ result['arealeased'] }}"><button>修改</button></a></td>
+        {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

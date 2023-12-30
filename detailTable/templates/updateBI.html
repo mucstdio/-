@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>房屋编号：{{buildid}}</p>
+    更改信息：
+    <form action="http://localhost:8080/upBI?buildid={{buildid}}" method="POST">
+        <p><input type="text" name="funccategory" value="{{funccategory}}"/></p>
+        <p><input type="text" name="arealeased" value="{{arealeased}}"/></p>
+        <p><input type="submit" value="提交"/></p>
+    </form>
+</body>
+</html>

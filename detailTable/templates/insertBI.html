@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h4>请填入所要插入的数据</h4>
+    <form action="http://localhost:8080/inBI" method="POST">
+        所属校区:<input type="text" name="campus" autocomplete="off"><br/><br/>
+        建筑编号:<input type="text" name="buildid" autocomplete="off"><br/><br/>
+        建筑名称:<input type="text" name="buildname" autocomplete="off"><br/><br/>
+        原值(元):<input type="text" name="buildvalue" autocomplete="off"><br/><br/>
+        坐落:<input type="text" name="locate" autocomplete="off"><br/><br/>
+        取得日期:<input type="text" name="acquisitiondata" autocomplete="off"><br/><br/>
+        建成年份:<input type="text" name="yearbuilt" autocomplete="off"><br/><br/>
+        占地面积:<input type="text" name="areacover" autocomplete="off"><br/><br/>
+        建筑面积:<input type="text" name="areabuild" autocomplete="off"><br/><br/>
+        使用面积:<input type="text" name="areause" autocomplete="off"><br/><br/>
+        地上建筑面积:<input type="text" name="areabuildabove" autocomplete="off"><br/><br/>
+        地下建筑面积:<input type="text" name="areabuildunder" autocomplete="off"><br/><br/>
+        地上层数:<input type="text" name="floorabove" autocomplete="off"><br/><br/>
+        地下层数:<input type="text" name="floorunder" autocomplete="off"><br/><br/>
+        建筑物高度(米):<input type="text" name="height" autocomplete="off"><br/><br/>
+        建筑物用途:<input type="text" name="purpose" autocomplete="off"><br/><br/>
+        产权形式:<input type="text" name="propertyform" autocomplete="off"><br/><br/>
+        权属证明:<input type="text" name="ownershipcertificate" autocomplete="off"><br/><br/>
+        建筑物结构:<input type="text" name="buildstructure" autocomplete="off"><br/><br/>
+
+	    建筑物结构:<select name="buildstructure" id="buildstructure">
+        <option value="框架结构">框架结构</option>
+        <option value="砖混结构">砖混结构</option>
+        <option value="砖木结构">砖木结构</option>
+        <option value="土木结构">土木结构</option>
+        <option value="混合结构">混合结构</option>
+        <option value="钢结构">钢结构</option>
+        <option value="木结构">木结构</option>
+        <option value="剪力墙结构">剪力墙结构</option>
+        <option value="框混结构">框混结构</option>
+        <option value="筒体结构">筒体结构</option>
+        <option value="框筒结构">框筒结构</option>
+        <option value="简易结构">简易结构</option>
+        <option value="现浇钢筋砼结构">现浇钢筋砼结构</option>
+        <option value="其它">其它</option>
+        </select><br/><br/>
+
+        权属性质:<input type="text" name="ownershipnature" autocomplete="off"><br/><br/>
+        产权证号:<input type="text" name="propertyid" autocomplete="off"><br/><br/>
+        取得方式:<input type="text" name="acquisitionmethod" autocomplete="off"><br/><br/>
+        使用面积系数(K):<input type="text" name="usecoefficient" autocomplete="off"><br/><br/>
+        功能类别:<input type="text" name="funccategory" autocomplete="off"><br/><br/>
+        学校产权中被外单位租（借）用面积:<input type="text" name="arealeased" autocomplete="off"><br/><br/>
+        <input type="submit" value="插入"/>
+    </form>
+</body>
+</html>

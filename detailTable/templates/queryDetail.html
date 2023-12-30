@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+  <p><a href="/index"><button>返回首页</button></a></p>
+  <h3>---------------统计报表------------------</h3>
+  <p>
+      <a href="/count1/轮机工程学院"><button>报表1_轮机工程学院</button></a>
+      <a href="/count1/航海学院"><button>报表1_航海学院</button></a>
+      <a href="/count1/船舶电气工程学院"><button>报表1_船舶电气工程学院</button></a>
+      <a href="/count1/信息科学技术学院"><button>报表1_信息科学技术学院</button></a>
+      <a href="/count1/交通运输工程学院"><button>报表1_交通运输工程学院</button></a>
+      <a href="/count1/航运经济与管理学院"><button>报表1_航运经济与管理学院</button></a>
+      <a href="/count1/船舶与海洋工程学院"><button>报表1_船舶与海洋工程学院</button></a>
+      <a href="/count1/环境科学与工程学院"><button>报表1_环境科学与工程学院</button></a>
+      <a href="/count1/法学院"><button>报表1_法学院</button></a>
+      <a href="/count1/外国语学院"><button>报表1_外国语学院</button></a>
+      <a href="/count1/公共管理与人文艺术学院"><button>报表1_公共管理与人文艺术学院</button></a>
+      <a href="/count1/马克思主义学院"><button>报表1_马克思主义学院</button></a>
+      <a href="/count1/理学院"><button>报表1_理学院</button></a>
+  </p>
+  <p><a href="/count2"><button>报表2</button></a> <a href="/count3"><button>报表3</button></a> <a href="/count4"><button>报表4</button></a></p>
+  <br>
+  <h3>------------增删查改总表------------------</h3>
+  <form action="/queryDetail" enctype='multipart/form-data' method='POST'>
+      <p>所属校区<input name="campus" type="text"/></p>
+      <p>建筑名称<input name="buildname" type="text"/></p>
+<!--      <p>房间号<input name="roomid" type="text" oninput="value=value.replace(/[^\d]/g,'')"/></p>-->
+      <p>房间号<input name="roomid" type="text"/></p>
+      <p>房间名称<input name="roomname" type="text"/></p>
+      <p>建筑面积<input name="areaBuild" type="text"/></p>
+      <p>使用面积<input name="areaUse" type="text"/></p>
+      <p>房屋用途<input name="purpose" type="text"/></p>
+      <p>房屋分类<input name="classify" type="text"/></p>
+      <p>使用人编号<input name="userid" type="text"/></p>
+      <p>使用人<input name="username" type="text"/></p>
+      <p>房屋状态<input name="roomstate" type="text"/></p>
+      <p>部门<input name="department" type="text"/></p>
+      <p>备注<input name="notes" type="text"/></p>
+      <input type="submit" value="查询"/>
+  </form>
+  <p><a href="/insertDetail"><button>插入</button></a></p>
+
+  <table border="2" width="100%" weight="100%">
+    <thead>
+    <tr>
+        <th>所属校区</th>
+        <th>建筑名称</th>
+        <th>房间号</th>
+        <th>房间名称</th>
+        <th>建筑面积</th>
+        <th>使用面积</th>
+        <th>房屋用途</th>
+        <th>房屋分类</th>
+        <th>使用人编号</th>
+        <th>使用人</th>
+        <th>房屋状态</th>
+        <th>备注</th>
+        <th>部门</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for result in merge_list %}
+            <tr>
+                <td>{{ result['campus']}}</td>
+                <td>{{ result['buildname']}}</td>
+                <td>{{ result['roomid']}}</td>
+                <td>{{ result['roomname']}}</td>
+                <td>{{ result['areaBuild']}}</td>
+                <td>{{ result['areaUse']}}</td>
+                <td>{{ result['purpose']}}</td>
+                <td>{{ result['classify']}}</td>
+                <td>{{ result['userid']}}</td>
+                <td>{{ result['username']}}</td>
+                <td>{{ result['roomstate']}}</td>
+                <td>{{ result['notes']}}</td>
+                <td>{{ result['department']}}</td>
+                <td><a href="/deleteConfirmation?buildname={{ result['buildname'] }}&roomid={{ result['roomid'] }}"><button>删除</button></a></td>
+<!--                <td><button onclick="myFunction(this)">删除</button></td>-->
+                <td><a href="/updateDetail?buildname={{ result['buildname'] }}&roomid={{ result['roomid'] }}"><button>修改</button></a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

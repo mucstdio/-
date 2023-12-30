@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="http://localhost:8080/export" method="POST">
+    <p>请输入导出目录文件名（形如 C:\Users\dell\Desktop\output（不写扩展名））：<input name="fileName" type="text"/>
+    <input type="submit" value="导出"/></p>
+</form>
+<p><a href="/queryDetail"><button>返回</button></a></p>
+<table border="2" width="100%" weight="100%">
+    <thead>
+    <tr>
+        <th>楼宇名称</th>
+        <th>行政办公_建筑面积</th>
+        <th>行政办公_使用面积</th>
+        <th>教师用房_建筑面积</th>
+        <th>教师用房_使用面积</th>
+        <th>研究生用房_建筑面积</th>
+        <th>研究生用房_使用面积</th>
+        <th>人员行政用房（行政+教师+研究生）_建筑面积</th>
+        <th>人员行政用房（行政+教师+研究生）_使用面积</th>
+        <th>本科实验室_建筑面积</th>
+        <th>本科实验室_使用面积</th>
+        <th>学科实验室_建筑面积</th>
+        <th>学科实验室_使用面积</th>
+        <th>专用教室_建筑面积</th>
+        <th>专用教室_使用面积</th>
+        <th>公共设施_建筑面积</th>
+        <th>公共设施_使用面积</th>
+        <th>合计_建筑面积</th>
+        <th>合计_使用面积</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for i in range(buildnum+1) %}
+            <tr>
+                <td>{{ result_list[i][0]}}</td>
+                <td>{{ result_list[i][11]}}</td>
+                <td>{{ result_list[i][1]}}</td>
+                <td>{{ result_list[i][12]}}</td>
+                <td>{{ result_list[i][2]}}</td>
+                <td>{{ result_list[i][13]}}</td>
+                <td>{{ result_list[i][3]}}</td>
+                <td>{{ result_list[i][14]}}</td>
+                <td>{{ result_list[i][4]}}</td>
+                <td>{{ result_list[i][15]}}</td>
+                <td>{{ result_list[i][5]}}</td>
+                <td>{{ result_list[i][16]}}</td>
+                <td>{{ result_list[i][6]}}</td>
+                <td>{{ result_list[i][17]}}</td>
+                <td>{{ result_list[i][7]}}</td>
+                <td>{{ result_list[i][18]}}</td>
+                <td>{{ result_list[i][8]}}</td>
+                <td>{{ result_list[i][19]}}</td>
+                <td>{{ result_list[i][9]}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
