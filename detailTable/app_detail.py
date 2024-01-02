@@ -12,6 +12,7 @@ import detailTable.config_detail as config_detail
 #引用数据库
 from detailTable.model_detail import Information, Basic1, Basic2, Dictionary1
 import pandas as pd
+import copy
 
 app = Flask(__name__)
 app.config.from_object(config_detail)
@@ -162,11 +163,11 @@ def updateDetail():
     global update_dict
     update_dict = infor.__dict__
     del update_dict['_sa_instance_state']
+    # output_update = update_dict
+    output_update = copy.deepcopy(update_dict)
+    output_update['purpose'] = id2name(output_update['purpose'])
 
-    output_updata = update_dict
-    output_updata['purpose'] = id2name(output_updata['purpose'])
-
-    return render_template("updateDetail.html", update_dict=update_dict)
+    return render_template("updateDetail.html", update_dict=output_update)
 
 
 @app.route('/update', methods=['GET', 'POST'])
@@ -185,11 +186,20 @@ def update():
             db.rollback()
             return render_template("update_fail.html")
         results['purpose'] = id2name(results['purpose'])
-        results['campus'] = update_dict['campus']
     return render_template("update.html", update_dict=results)
 
 
 export_list = [[]]
+count1_head = ['楼宇名称', '行政办公', '教师用房', '研究生用房', '人员行政用房（行政+教师+研究生）', '本科实验室', '学科实验室', '专用教室', '公共设施', '合计']
+count2_head = ['部门名称', '行政办公', '教师用房', '研究生用房', '人员行政用房（行政+教师+研究生）', '本科实验室', '学科实验室', '专用教室', '公共设施', '合计']
+count4_head = ['楼宇名称', '教学及辅助用房', '教室', '实验实习用房', '专职科研机构办公及研究用房', '图书馆'\
+            , '室内体育用房', '师生活动用房', '会堂', '继续教育用房', '行政办公用房', '校行政办公用房'\
+            , '院系及教师教研办公用房', '生活用房', '学生宿舍（公寓）', '食堂', '单身教师宿舍（公寓）'\
+            , '后勤及辅助用房', '教工住宅', '其他用房']
+count3_head = ['楼宇名称', '行政办公_建筑面积', '行政办公_使用面积', '教师用房_建筑面积', '教师用房_使用面积', '研究生用房_建筑面积'\
+            , '研究生用房_使用面积', '人员行政用房（行政+教师+研究生）_建筑面积', '人员行政用房（行政+教师+研究生）_使用面积'\
+            , '本科实验室_建筑面积', '本科实验室_使用面积', '学科实验室_建筑面积', '学科实验室_使用面积', '专用教室_建筑面积'\
+            , '专用教室_使用面积', '公共设施_建筑面积', '公共设施_使用面积', '合计_建筑面积', '合计_使用面积']
 
 
 @app.route('/count1/<depart>')
@@ -211,13 +221,13 @@ def count1(depart):
     kk = 0
     for result in merge_list:
         result_list.append([])
-        for j in range(1, 14): # 数字从下标1开始，下标0是楼宇名称
+        for j in range(1, 11): # 数字从下标1开始，下标0是楼宇名称
             result_list[kk].append(0)
         map_buildname[result['buildname']] = kk
         kk += 1
     # 给最后一行“总计”留出空间
     result_list.append([])
-    for j in range(1, 14):  # 数字从下标1开始，下标0是楼宇名称
+    for j in range(1, 11):  # 数字从下标1开始，下标0是楼宇名称
         result_list[kk].append(0)
 
     # print(result_list[map_buildname['船电楼']][2]) # 访问每个元素的方式
@@ -244,11 +254,11 @@ def count1(depart):
         result_list[i][9] = result_list[i][4] + result_list[i][5] + result_list[i][6] + result_list[i][7] + result_list[i][8] # 第二个合计
     # 转化为保留两位小数，防止精度导致的无限小数
     for i in range(buildnum):
-        for j in range(1, 11):
+        for j in range(1, 10):
             result_list[i][j] = round(result_list[i][j], 2)
     # 最后一行总计
     result_list[kk][0] = '总计'
-    for j in range(1, 11):  # 数字从下标1开始，下标0是楼宇名称
+    for j in range(1, 10):  # 数字从下标1开始，下标0是楼宇名称
         for i in range(buildnum):
             result_list[kk][j] += result_list[i][j]
             result_list[kk][j] = round(result_list[kk][j], 2)
@@ -343,13 +353,13 @@ def count2():
     kk = 0
     for result in merge_list:
         result_list.append([])
-        for j in range(1, 14): # 数字从下标1开始，下标0是部门名称
+        for j in range(1, 11): # 数字从下标1开始，下标0是部门名称
             result_list[kk].append(0)
         map_departmentname[result['departmentname']] = kk
         kk += 1
     # 给最后一行“总计”留出空间
     result_list.append([])
-    for j in range(1, 14):  # 数字从下标1开始，下标0是学院名称（合计）
+    for j in range(1, 11):  # 数字从下标1开始，下标0是学院名称（合计）
         result_list[kk].append(0)
 
     # print(result_list[map_buildname['航海学院']][2]) # 访问每个元素的方式
@@ -373,11 +383,11 @@ def count2():
         result_list[i][9] = result_list[i][4] + result_list[i][5] + result_list[i][6] + result_list[i][7] + result_list[i][8] # 第二个合计
     # 转化为保留两位小数，防止精度导致的无限小数
     for i in range(departmentnum):
-        for j in range(1, 11):
+        for j in range(1, 10):
             result_list[i][j] = round(result_list[i][j], 2)
     # 最后一行总计
     result_list[kk][0] = '总计'
-    for j in range(1, 11):  # 数字从下标1开始，下标0是楼宇名称
+    for j in range(1, 10):  # 数字从下标1开始，下标0是楼宇名称
         for i in range(departmentnum):
             result_list[kk][j] += result_list[i][j]
             result_list[kk][j] = round(result_list[kk][j], 2)
@@ -396,13 +406,13 @@ def count4():
     kk = 0
     for result in merge_list:
         result_list.append([])
-        for j in range(1, 22): # 数字从下标1开始，下标0是楼宇名称
+        for j in range(1, 21): # 数字从下标1开始，下标0是楼宇名称
             result_list[kk].append(0)
         map_buildname[result['buildname']] = kk
         kk += 1
     # 给最后一行“总计”留出空间
     result_list.append([])
-    for j in range(1, 22):  # 数字从下标1开始，下标0是楼宇名称
+    for j in range(1, 21):  # 数字从下标1开始，下标0是楼宇名称
         result_list[kk].append(0)
 
     # print(result_list[map_buildname['船电楼']][2]) # 访问每个元素的方式
@@ -477,13 +487,29 @@ def count4():
     return render_template('count4.html', result_list=result_list, buildnum=buildnum)
 
 
-@app.route('/export', methods=['GET', 'POST'])
-def export():
+@app.route('/export/<id>', methods=['GET', 'POST'])
+def export(id):
     if request.method == 'POST':
         fileName = request.form.get('fileName')
         fileName += '.xlsx'
-        # print(fileName)
         global export_list
+
+        if(id == '1'):
+            export_list.insert(0, count1_head)
+        if (id == '2'):
+            export_list.insert(0, count2_head)
+        if (id == '4'):
+            export_list.insert(0, count4_head)
+        if (id == '3'):
+            export_list = list(map(list, zip(*export_list)))
+            tem_list = []
+            tem_list.append(export_list[0])
+            for i in range(1, 9+1, 1):
+                tem_list.append(export_list[i+10])
+                tem_list.append(export_list[i])
+            export_list = list(map(list, zip(*tem_list)))
+            export_list.insert(0, count3_head)
+
         df = pd.DataFrame(export_list)
         df.to_excel(fileName, index=False, header=False)
     return render_template('export.html')
